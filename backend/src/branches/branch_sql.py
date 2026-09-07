@@ -27,8 +27,8 @@ from src.validation.confidence_scorer import calculate_confidence
 
 logger = logging.getLogger(__name__)
 
-SQL_GENERATION_MODEL = "llama-3.3-70b-versatile"
-VIZ_GENERATION_MODEL = "llama-3.3-70b-versatile"
+SQL_GENERATION_MODEL = "openai/gpt-oss-120b"
+VIZ_GENERATION_MODEL = "openai/gpt-oss-120b"
 MAX_RETRIES = 2
 
 # ── Data Scientist Prompt (Ethereal Lens themed) ─────────────
@@ -613,7 +613,7 @@ def _detect_chart_type(columns: list[str], rows: list[dict], sql: str, hint: str
         any(kw in col for kw in time_col_keywords)
         for col in cols_upper
     )
-    has_time_sql = any(kw in sql_upper for kw in ["DATE_TRUNC", "METRIC_MONTH", "ORDER BY"])
+    has_time_sql = any(kw in sql_upper for kw in ["DATE_TRUNC", "METRIC_MONTH"])
     
     # Also detect date-like string values in first column
     first_val = str(rows[0].get(columns[0], ""))
@@ -636,7 +636,8 @@ def _detect_chart_type(columns: list[str], rows: list[dict], sql: str, hint: str
         return "line"
     
     # ── Small categorical set → doughnut if hint says so or ≤5 items ──
-    has_numeric = any(isinstance(rows[0].get(col), (int, float)) for col in columns)
+    from decimal import Decimal
+    has_numeric = any(isinstance(rows[0].get(col), (int, float, Decimal)) for col in columns)
     if has_numeric and row_count <= 5 and hint == "doughnut":
         return "doughnut"
     

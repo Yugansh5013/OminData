@@ -2,7 +2,7 @@
 OmniData — Intent Router (Node 0)
 
 Classifies user query intent and sets routing flags for the LangGraph pipeline.
-Uses Llama 3.1 8B via Groq for fast, lightweight classification.
+Uses GPT OSS 20B via Groq for fast, lightweight classification.
 
 Phase 1: Primary focus on SQL detection.
 Phase 2+: Adds RAG, Salesforce, and web branch detection.
@@ -82,7 +82,7 @@ async def intent_router_node(state: GraphState, groq_pool: Any) -> dict:
             messages.append({"role": "user", "content": query})
 
         response = groq_pool.complete_with_retry(
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             messages=messages,
             temperature=0.0,
             max_tokens=300,

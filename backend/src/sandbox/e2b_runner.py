@@ -252,7 +252,7 @@ Do not include explanations or markdown markers.
 - Output ONLY valid Python code, nothing else"""
 
     response = groq_pool.complete_with_retry(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[
             {"role": "system", "content": "You fix Python code. Return ONLY corrected code."},
             {

@@ -459,7 +459,7 @@ def _build_transparency(result: dict) -> dict:
         "confidence": confidence,
         "semantic_substitutions": semantic_subs if semantic_subs else None,
         "validation_passed": True if jargon is not None else None,
-        "validator_model": "llama-3.3-70b" if conf_score else None,
+        "validator_model": "openai/gpt-oss-20b" if conf_score else None,
         "validator_latency_ms": None,
     }
 

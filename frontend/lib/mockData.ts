@@ -70,7 +70,7 @@ export const MOCK_RESPONSE_1: ChatResponse = {
         { original: "IS_ACTIVE = 1", replaced_with: "active customers", location: "bullet 3" }
       ],
       validation_passed: true,
-      validator_model: "llama-3.3-8b",
+      validator_model: "openai/gpt-oss-20b",
       validator_latency_ms: 312
     },
     chart_data: {

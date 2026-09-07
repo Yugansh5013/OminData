@@ -277,7 +277,7 @@ flowchart TD
 | **State** | Zustand | Lightweight global state management |
 | **Backend** | FastAPI, Uvicorn, Python 3.11 | REST + SSE API server |
 | **Orchestration** | LangGraph | Multi-agent pipeline with conditional branching |
-| **LLM Inference** | Groq API (Llama 3.3 70B & 8B) | Intent routing, SQL generation, synthesis, validation |
+| **LLM Inference** | Groq API (GPT OSS 120B & 20B) | Intent routing, SQL generation, synthesis, validation |
 | **Vector Database** | Pinecone Serverless (2 indexes, 4 namespaces) | Schema RAG, document retrieval, CRM fallback |
 | **Data Warehouse** | Snowflake (4 tables, 4 schemas) | Structured business data (sales, returns, customers, products) |
 | **Web Search** | Tavily API | Real-time external market intelligence |

@@ -5,7 +5,7 @@ Three-layer jargon detection and rewriting pipeline:
   Layer 1: Pattern-based detection (regex) — catches __c fields,
            ALL_CAPS columns, fully-qualified table names, SQL fragments
   Layer 2: Known jargon registry — metric dictionary + Snowflake-backed overrides
-  Layer 3: LLM rewriting (Llama 3.3 8B) — naturally rewrites flagged terms
+  Layer 3: LLM rewriting (GPT OSS 20B) — naturally rewrites flagged terms
 
 Fires ONLY when rag_present = true (any unstructured data source was used).
 Pure SQL or pure Web queries skip this node.
@@ -36,7 +36,7 @@ from src.clarification.metric_resolver import get_jargon_map
 
 logger = logging.getLogger(__name__)
 
-VALIDATOR_MODEL = "llama-3.1-8b-instant"
+VALIDATOR_MODEL = "openai/gpt-oss-20b"
 
 # ── Module-level database connector reference ──────────────────
 _db_connector = None

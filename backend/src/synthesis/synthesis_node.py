@@ -2,7 +2,7 @@
 OmniData — Synthesis Node (Node 2)
 
 Synthesizes all branch outputs into a clean, jargon-free business narrative
-using Llama 3.3 70B.
+using GPT OSS 120B.
 
 Designed to handle N branch outputs generically — adding a new branch
 requires no changes to this node.
@@ -18,7 +18,7 @@ from src.clarification.metric_resolver import get_jargon_map
 logger = logging.getLogger(__name__)
 
 # ── Model ──────────────────────────────────────────────────────
-SYNTHESIS_MODEL = "llama-3.3-70b-versatile"
+SYNTHESIS_MODEL = "openai/gpt-oss-120b"
 
 
 # ── Synthesis prompt ───────────────────────────────────────────
@@ -56,7 +56,7 @@ Replace these technical terms if they appear in your response:
 
 async def synthesis_node(state: GraphState, groq_pool: Any) -> dict:
     """
-    Node 2: Synthesize all branch outputs into a final response using Llama 3.3 70B.
+    Node 2: Synthesize all branch outputs into a final response using GPT OSS 120B.
     """
     query = state.get("original_query", "")
 
@@ -149,7 +149,7 @@ async def synthesis_node(state: GraphState, groq_pool: Any) -> dict:
         conversation_context = "\n".join(context_lines)
 
     # ════════════════════════════════════════════════════
-    # Llama 3.3 70B — single-step synthesis
+    # GPT OSS 120B — single-step synthesis
     # ════════════════════════════════════════════════════
     synthesis_prompt = SYNTHESIS_PROMPT.format(
         jargon_rules=jargon_rules or "No specific substitutions required.",
